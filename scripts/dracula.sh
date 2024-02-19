@@ -33,19 +33,36 @@ main()
   show_ssh_session_port=$(get_tmux_option "@kanagawa-show-ssh-session-port" false)
   IFS=' ' read -r -a plugins <<< $(get_tmux_option "@kanagawa-plugins" "battery network weather")
   show_empty_plugins=$(get_tmux_option "@kanagawa-show-empty-plugins" true)
+  kanagawa_theme=$(get_tmux_option "@kanagawa-theme" "wave") # {dragon, wave, }
 
   # Kanagawa Color palette
-  white='#dcd7ba'        # fujiWhite
-  gray='#2a2a37'         # sumiInk4
-  dark_gray='#1a1a22'    # sumiInk2
-  light_purple='#363646' # sumiInk5
-  dark_purple='#54546D'  # sumiInk6
-  cyan='#6a9589'         # wave aqua
-  green='#938aa9'        # springViolet1
-  orange='#dca561'       # autumn orange
-  red='#e46876'          # wave red
-  pink='#d27e99'         # sakura pink
-  yellow='#ff9e3b'       # roninYellow
+  case $kanagawa_theme in
+    wave)
+      white='#DCD7BA'        # fujiWhite
+      gray='#2A2A37'         # sumiInk2
+      dark_gray='#1A1A22'    #
+      light_purple='#363646' # sumiInk3
+      dark_purple='#54546D'  # sumiInk4
+      cyan='#6A9589'         # waveAqua1
+      green='#938AA9'        # springViolet1
+      orange='#DCA561'       # autumnYellow
+      red='#E46876'          # waveRed
+      pink='#D27E99'         # sakuraPink
+      yellow='#FF9E3B';;       # roninYellow
+    dragon)
+      white='#A6A69C'        #
+      gray='#282727'         #
+      dark_gray='#181615'    #
+      light_purple='#363646' # sumiInk5
+      dark_purple='#54546D'  # sumiInk6
+      cyan='#6a9589'         # wave aqua
+      green='#938aa9'        # springViolet1
+      orange='#dca561'       # autumn orange
+      red='#e46876'          # wave red
+      pink='#d27e99'         # sakura pink
+      yellow='#E6C384';;       # CarpYellow
+  esac
+
 
   # Handle left icon configuration
   case $show_left_icon in
